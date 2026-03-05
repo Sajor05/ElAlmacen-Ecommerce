@@ -1,0 +1,29 @@
+div article .recomendation-carousel-article-header {
+  text-align: center;
+}
+
+.quickaccess-card {
+  border-radius: 6px;
+}
+
+.recomendation-carousel-article-title-ml {
+  margin-bottom: 40px;
+}
+
+.recomendation-carousel-article-footer-button {
+  font-size: 11px;
+  height: 25px;
+  line-height: 12px;
+  font-weight: 600;
+  padding: 5px;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.recomendation-carousel-article-footer-button-container {
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  max-height: 24px;
+}

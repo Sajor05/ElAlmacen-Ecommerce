@@ -1,0 +1,58 @@
+[
+  {
+    "img": "https://http2.mlstatic.com/frontend-assets/homes-palpatine/dynamic-access-desktop/new-buyer.svg",
+    "title": "Envío gratis",
+    "description": "Beneficio por ser tu primera compra.",
+    "button_text": "Mostrar productos",
+    "link": ""
+  },
+  {
+    "img": "https://http2.mlstatic.com/frontend-assets/homes-palpatine/dynamic-access-desktop/registration-da.svg",
+    "title": "Ingresá a tu cuenta",
+    "description": "Disfrutá de ofertas y comprá sin límites.",
+    "button_text": "Ingresar a tu cuenta",
+    "link": "/iniciar-sesion"
+  },
+  {
+    "img": "https://http2.mlstatic.com/frontend-assets/homes-palpatine/dynamic-access-desktop/payment-methods.svg",
+    "title": "Medios de Pago",
+    "description": "Pagá tus compras de forma rápida y segura.",
+    "button_text": "Conocer medios de pago",
+    "link": ""
+  },
+  {
+    "img": "https://http2.mlstatic.com/frontend-assets/homes-palpatine/dynamic-access-desktop/low-price-product.svg",
+    "title": "Menos de $20.000",
+    "description": "Descubrí productos con precios bajos.",
+    "button_text": "Mostrar productos",
+    "link": ""
+  },
+  {
+    "img": "https://http2.mlstatic.com/frontend-assets/homes-palpatine/dynamic-access-desktop/top-sale.svg",
+    "title": "Más vendidos",
+    "description": "Explorá los productos que son tendencia",
+    "button_text": "Ir a Más vendidos",
+    "link": ""
+  },
+  {
+    "img": "https://http2.mlstatic.com/frontend-assets/homes-palpatine/dynamic-access-desktop/buy-protected.svg",
+    "title": "Compra Protegida",
+    "description": "Podes devolver tu compra gratis",
+    "button_text": "Como funciona",
+    "link": ""
+  },
+  {
+    "img": "https://http2.mlstatic.com/frontend-assets/homes-palpatine/dynamic-access-desktop/store-official.svg",
+    "title": "Tiendas Oficiales",
+    "description": "Encontrá tus marcas prederidas.",
+    "button_text": "Mostrar tiendas",
+    "link": ""
+  },
+  {
+    "img": "https://http2.mlstatic.com/frontend-assets/homes-palpatine/dynamic-access-desktop/categories.svg",
+    "title": "Nuestras categorías",
+    "description": "Encontrá celulares, ropa, inmuebles y más.",
+    "button_text": "Ir a categorías",
+    "link": ""
+  }
+]
