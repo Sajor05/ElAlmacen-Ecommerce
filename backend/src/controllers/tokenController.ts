@@ -3,7 +3,7 @@ import { SECRET_KEY } from "../config.js";
 import User from "../schemas/user_schema.js";
 import Admin from "../schemas/admin_schema.js";
 import type { Request, Response } from "express";
-import type { IPayload } from "../../../shared/interface.js";
+import type { IPayload } from "../types/interface.js";
 
 export async function verifyToken(req: Request, res: Response) {
   const { token } = req.cookies;
