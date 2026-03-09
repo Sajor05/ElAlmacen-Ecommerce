@@ -6,7 +6,7 @@
     "moduleResolution": "NodeNext",
 
     /* Directorios */
-    "rootDir": "..",
+    "rootDir": "./src",
     "outDir": "./dist",
 
     /* Interoperabilidad */
