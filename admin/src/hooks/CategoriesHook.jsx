@@ -27,6 +27,8 @@ export function useParentCategories() {
         const res = await axios.get(
           "https://elalmacen-ecommerce.onrender.com/api/parent-categories",
         );
+        console.log(res);
+        console.log(res.data);
         setCategories(res.data);
       } catch (error) {
         console.log(error);

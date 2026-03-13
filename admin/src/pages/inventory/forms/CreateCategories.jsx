@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { updateCategories } from "../../../api/api";
 import { SectionTitle } from "../../../models/SectionTitle";
-import { useCategories } from "../../../hooks/CategoriesHook";
+import { useParentCategories } from "../../../hooks/CategoriesHook";
 
 export function CreateCategory() {
   const [formData, setFormData] = useState({
@@ -30,7 +30,7 @@ export function CreateCategory() {
       name: "",
     });
   };
-  const categories = useCategories();
+  const categories = useParentCategories();
   return (
     <div className="border border-gray-400 rounded-lg p-5 shadow-md">
       <SectionTitle text={"Agregar Categoria"} />
