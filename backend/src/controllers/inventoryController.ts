@@ -18,8 +18,7 @@ export async function createCategory(req: Request, res: Response) {
 
       parent.subCategorias.push(newCategory._id);
       await parent.save();
-
-      // newCategory.father = parent._id;
+      newCategory.parent = parent._id;
     }
 
     // 3. Guardamos la nueva categoría
