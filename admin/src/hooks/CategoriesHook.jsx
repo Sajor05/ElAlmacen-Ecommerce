@@ -6,7 +6,45 @@ export function useCategories() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/categories");
+        const res = await axios.get(
+          "https://elalmacen-ecommerce.onrender.com/api/categories",
+        );
+        setCategories(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+  return categories;
+}
+
+export function useParentCategories() {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          "https://elalmacen-ecommerce.onrender.com/api/parent-categories",
+        );
+        setCategories(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+  return categories;
+}
+
+export function useChildrenCategories() {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          "https://elalmacen-ecommerce.onrender.com/api/children-categories",
+        );
         setCategories(res.data);
       } catch (error) {
         console.log(error);

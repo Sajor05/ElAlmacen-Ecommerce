@@ -1,11 +1,9 @@
 import axios from "axios";
 
 const isProduction = import.meta.env.MODE === "production";
-const baseURL = isProduction
-  ? "https://mercadolibre-sajor05.onrender.com/api"
-  : "http://localhost:4000/api";
+const baseURL = "https://elalmacen-ecommerce.onrender.com/api";
 const instance = axios.create({
-  baseURL: "http://localhost:4000/api",
+  baseURL: baseURL,
   withCredentials: true,
 });
 

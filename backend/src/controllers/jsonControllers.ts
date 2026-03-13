@@ -14,6 +14,26 @@ export async function getCategories(req: Request, res: Response) {
   }
 }
 
+export async function getParentCategories(req: Request, res: Response) {
+  try {
+    const allCategories = await Categories.find({ parent: { $ne: null } });
+    res.status(200).json(allCategories);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error al agarrar las categorías" });
+  }
+}
+
+export async function getChildrenCategories(req: Request, res: Response) {
+  try {
+    const allCategories = await Categories.find({ parent: null });
+    res.status(200).json(allCategories);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error al agarrar las categorías" });
+  }
+}
+
 export const getQuickaccess = async (req: Request, res: Response) => {
   try {
     const absolutePath = path.join(cwd(), "src", "mocks", "access.json");
