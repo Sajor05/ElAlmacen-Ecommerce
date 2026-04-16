@@ -2,7 +2,9 @@ import { Navbar } from "../../components/navbar/Navbar";
 import { SectionTitle } from "../../models/SectionTitle";
 import { CreateCategory } from "./forms/CreateCategories";
 import { CreateProduct } from "./forms/CreateProduct";
+import { ProductCard } from "../../models/ProductCard";
 import { usePageTitle } from "../../hooks/PageTitle";
+import { useProducts } from "../../hooks/ProductsHook";
 export const Inventory = () => {
   usePageTitle("Inventario | El almacén");
   return (
@@ -24,9 +26,22 @@ export const Inventory = () => {
 };
 
 const InventoryList = () => {
+  const products = useProducts();
   return (
-    <aside className="border border-gray-400 rounded-lg p-5">
-      <SectionTitle text={"Inventario"} />
+    <aside className="bg-white rounded-lg p-5 lg:h-230">
+      <header>
+        <SectionTitle text={"Inventario"} />
+        <div className="p-4 text-center">
+          Cantidad de productos: {products.length}
+        </div>
+      </header>
+      <main className="mx-3">
+        <div className="grid grid-cols-1 lg:h-190 overflow-y-auto gap-3">
+          {products.map((p, k) => (
+            <ProductCard item={p} key={k} />
+          ))}
+        </div>
+      </main>
     </aside>
   );
 };

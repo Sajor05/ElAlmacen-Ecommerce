@@ -1,6 +1,7 @@
 import axios from "axios";
-import { createContext, useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { loginRequest, verifyTokenRequest } from "../api/api.js";
+import { createContext, useState, useContext, useEffect } from "react";
 
 export const AuthContext = createContext();
 
@@ -16,6 +17,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
   const isProduction = import.meta.env.MODE === "production";
   const baseURL = isProduction
     ? "https://starbucksclone-sajor05.onrender.com/api/logout"
@@ -72,6 +74,7 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(false);
         setUser(null);
         setLoading(false);
+        navigate("/");
       }
     }
     checkLogin();

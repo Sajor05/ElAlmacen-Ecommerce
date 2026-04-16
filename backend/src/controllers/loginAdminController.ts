@@ -5,6 +5,7 @@ import { createAccessToken } from "../middleware/jwt.js";
 export async function loginAdmin(req: Request, res: Response) {
   const { email, password } = req.body;
   try {
+    console.log(req.body);
     const isProduction = process.env.NODE_ENV === "production";
     const userFound = await Admin.findOne({ email });
     if (!userFound)
@@ -31,6 +32,6 @@ export async function loginAdmin(req: Request, res: Response) {
     if (error instanceof Error) {
       return res.status(500).json({ message: error.message });
     }
-    return res.status(500).json({ message: "An unknown error occurred" });
+    return res.status(500).json({ message: "Error interno del servidor" });
   }
 }

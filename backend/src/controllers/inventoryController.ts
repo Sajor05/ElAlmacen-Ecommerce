@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 import Categories from "../schemas/category_schema.js";
+import Product from "../schemas/product_schema.js";
 
 export async function createCategory(req: Request, res: Response) {
   try {
@@ -31,5 +32,35 @@ export async function createCategory(req: Request, res: Response) {
   } catch (error) {
     console.error("Error al crear categoría:", error);
     return res.status(500).json({ message: "Error interno del servidor" });
+  }
+}
+
+/*------------------------------------------
+-- P R O D U C T S  C O N T R O L L E R S --
+------------------------------------------*/
+
+export async function createProduct(req: Request, res: Response) {
+  try {
+    console.log(req.body);
+    const newProduct = new Product(req.body);
+    await newProduct.save();
+
+    return res.status(201).json({
+      message: "Categoría creada exitosamente",
+      data: newProduct,
+    });
+  } catch (error) {
+    console.error("Error al crear categoría:", error);
+    return res.status(500).json({ message: "Error interno del servidor" });
+  }
+}
+
+export async function getProducts(req: Request, res: Response) {
+  try {
+    const allProducts = await Product.find();
+    res.status(200).json(allProducts);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error interno del servidor" });
   }
 }

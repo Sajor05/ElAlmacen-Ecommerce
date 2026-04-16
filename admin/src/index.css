@@ -3,4 +3,32 @@
 body {
   margin: 0;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: #080000; /* Fallback color */
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* The Gradient */
+  background: linear-gradient(
+    60deg,
+    rgba(8, 0, 0, 1) 43%,
+    rgba(255, 0, 0, 1) 100%
+  );
+
+  background-size: cover;
+  background-position: center;
+
+  /* The Effect */
+  filter: blur(40px); /* Increased blur for a smoother aesthetic */
+  transform: scale(1.1); /* Prevents white edges caused by blurring */
+  z-index: -1;
 }

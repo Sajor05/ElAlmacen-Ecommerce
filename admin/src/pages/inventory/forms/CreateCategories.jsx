@@ -1,3 +1,4 @@
+import "./style.css";
 import { useState } from "react";
 import { updateCategories } from "../../../api/api";
 import { SectionTitle } from "../../../models/SectionTitle";
@@ -22,7 +23,8 @@ export function CreateCategory() {
   const handleSubmit = (e) => {
     e.preventDefault();
     updateCategories(formData);
-    console.log("Datos a enviar:", formData);
+    window.location.reload();
+    //console.log("Datos a enviar:", formData);
 
     setFormData({
       type: "",
@@ -32,7 +34,7 @@ export function CreateCategory() {
   };
   const categories = useParentCategories();
   return (
-    <div className="border border-gray-400 rounded-lg p-5 shadow-md">
+    <div className="border bg-white rounded-lg p-5 shadow-md">
       <SectionTitle text={"Agregar Categoria"} />
       <form onSubmit={handleSubmit} id="form-data" className="mt-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
