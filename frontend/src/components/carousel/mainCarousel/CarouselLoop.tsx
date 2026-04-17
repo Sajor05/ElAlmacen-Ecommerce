@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, Children } from "react";
 import type {
   ButtonsProps,
   CarouselLoopProps,
-} from "../../../interface/interface";
+} from "../../../../../shared/interface";
 
 export function CarouselLoop({ children }: CarouselLoopProps) {
   // 1. Convertimos los hijos en un array real para poder manipularlos

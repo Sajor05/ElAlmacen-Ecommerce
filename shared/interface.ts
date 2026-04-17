@@ -23,8 +23,25 @@ export interface IButtonCardProps {
   text: string;
 }
 
+export interface IProductCategoryCarouselProps {
+  category: string;
+}
+
+export interface IButtonIndexProps {
+  title: string;
+}
+
 export interface ISubCategory {
   name: string;
+}
+
+export interface IProductCard {
+  product: IProduct;
+}
+
+export interface IRecommendationCarouselProps {
+  children: ReactNode;
+  slides?: IProductCard[];
 }
 
 export interface ICategory extends Document {
@@ -42,13 +59,28 @@ export interface User {
   purchaseHistory?: PurchaseHistory[];
 }
 
+export interface ISeller {
+  name: string;
+  rating: number;
+  antique: number;
+  sells: number;
+}
+
 export interface IProduct {
+  category: string;
+  subCategory: string;
+  isOffer: boolean;
+  offerPercent: number;
   title: string;
-  provider: string;
-  image: string;
   price: number;
-  stock?: number;
-  currentItemCount: number;
+  stock: number;
+  hasQuotas: boolean;
+  quotasCount: number;
+  imagesArray: [string];
+  details: [string];
+  description: string;
+  seller: ISeller;
+  currentItemCount?: number;
 }
 
 export interface PurchaseHistory {

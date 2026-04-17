@@ -25,6 +25,7 @@ export function CreateProduct() {
       name: "zyros",
       rating: 5,
       antique: 5,
+      sells: 10000,
     },
   });
 

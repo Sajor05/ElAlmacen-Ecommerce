@@ -1,26 +1,26 @@
-import type { Product } from "../../interface/interface";
-export function ProductCard(product: Product) {
+import { Link } from "react-router-dom";
+import type { IProductCard } from "../../../../shared/interface";
+
+export function ProductCard({ product }: IProductCard) {
   return (
-    <article>
-      <div className="product-title-container">
-        <span className="product-title">{product.title}</span>
-      </div>
-      <div className="product-provider-container">
-        <span className="product-provider">{product.provider}</span>
-      </div>
-      <div className="product-image-container">
-        <img
-          src={product.image}
-          alt={product.title}
-          className="product-image"
-        />
-      </div>
-      <div className="product-price-container">
-        <span className="product-price">${product.price}</span>
-      </div>
-      <button className="rounded p-5 bg-[#FF0000]">
-        <span className="text-white uppercase font-bold">comprar</span>
-      </button>
-    </article>
+    <Link to={"#"}>
+      <article className=" flex flex-col gap-4 items-center bg-[#e7e7e7] p-5 rounded-xl">
+        <div className="product-image-container">
+          <img
+            src={product.imagesArray[0]}
+            alt={product.title}
+            className="product-image w-42.75 h-37.5"
+          />
+        </div>
+        <div>
+          <span>{product.title}</span>
+        </div>
+        <footer>
+          <div className="product-price-container">
+            <span className="product-price">${product.price}</span>
+          </div>
+        </footer>
+      </article>
+    </Link>
   );
 }
