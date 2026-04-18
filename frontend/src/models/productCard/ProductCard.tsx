@@ -3,7 +3,7 @@ import type { IProductCard } from "../../../../shared/interface";
 
 export function ProductCard({ product }: IProductCard) {
   return (
-    <Link to={"#"}>
+    <Link to={`/zs/product/${product._id}`}>
       <article className=" flex flex-col gap-4 items-center bg-[#e7e7e7] p-5 rounded-xl">
         <div className="product-image-container">
           <img

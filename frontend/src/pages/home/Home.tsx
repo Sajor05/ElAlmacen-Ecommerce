@@ -1,7 +1,7 @@
 import { QuickAccess } from "../../hooks/Quickaccess";
-import { Navbar } from "../../components/navbar/Navbar";
+import { Navbar } from "../../components/extends/navbar/Navbar";
 import { Main_carousel } from "../../components/carousel/mainCarousel/MainCarousel";
-import { Footer } from "../../components/footer/Footer";
+import { Footer } from "../../components/extends/footer/Footer";
 import { ProductCategoryCarousel } from "../../components/carousel/productsCarousel/ProductCategoryCarousel";
 
 export default function Home() {

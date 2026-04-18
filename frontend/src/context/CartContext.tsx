@@ -3,10 +3,10 @@ import { userUpdateRequest } from "../api/auth";
 import { useAuth } from "./AuthContext";
 import type {
   CartContextType,
-  Product,
+  IProduct,
   PurchaseHistory,
   CartProviderProps,
-} from "../interface/interface";
+} from "../../../shared/interface";
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
@@ -20,7 +20,7 @@ export function useCart(): CartContextType {
 export function CartProvider({ children }: CartProviderProps) {
   const { user, updateUserLocal, loading } = useAuth();
 
-  const [cart, setCart] = useState<Product[]>([]);
+  const [cart, setCart] = useState<IProduct[]>([]);
   const [purchaseHistory, setPurchaseHistory] = useState<PurchaseHistory[]>([]);
 
   const lastUserId = useRef<string | null>(null);
@@ -57,7 +57,7 @@ export function CartProvider({ children }: CartProviderProps) {
   }, [user, loading]);
 
   const saveData = async (
-    newCart: Product[],
+    newCart: IProduct[],
     newHistory: PurchaseHistory[],
   ) => {
     setCart(newCart);
@@ -94,9 +94,9 @@ export function CartProvider({ children }: CartProviderProps) {
     }
   };
 
-  const handleAddItem = async (item: Product) => {
+  const handleAddItem = async (item: IProduct) => {
     const foundItem = cart.find((i) => i.title === item.title);
-    let newCart: Product[];
+    let newCart: IProduct[];
 
     if (foundItem) {
       newCart = cart.map((i) =>
@@ -110,7 +110,7 @@ export function CartProvider({ children }: CartProviderProps) {
     await saveData(newCart, purchaseHistory);
   };
 
-  const handleRemoveItem = async (product: Product) => {
+  const handleRemoveItem = async (product: IProduct) => {
     const newCart = cart.filter((p) => p.title !== product.title);
     await saveData(newCart, purchaseHistory);
   };

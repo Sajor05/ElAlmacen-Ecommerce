@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Types } from "mongoose";
 
 export interface IPayload {
   id: string;
@@ -67,6 +68,7 @@ export interface ISeller {
 }
 
 export interface IProduct {
+  _id: Types.ObjectId;
   category: string;
   subCategory: string;
   isOffer: boolean;
@@ -80,7 +82,7 @@ export interface IProduct {
   details: [string];
   description: string;
   seller: ISeller;
-  currentItemCount?: number;
+  currentItemCount: number;
 }
 
 export interface PurchaseHistory {
@@ -91,6 +93,14 @@ export interface PurchaseHistory {
 
 export interface CartProviderProps {
   children: ReactNode;
+}
+
+export interface AuthProviderProps {
+  children: ReactNode;
+}
+
+export interface IProductViewProps {
+  product: IProduct;
 }
 
 export interface User {

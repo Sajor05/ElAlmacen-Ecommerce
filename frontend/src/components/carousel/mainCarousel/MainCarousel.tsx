@@ -12,8 +12,8 @@ const carousel_images = [
 
 export const Main_carousel = () => {
   return (
-    <main>
-      <div className="relative">
+    <section className="">
+      <div className="relative top-25">
         <CarouselLoop>
           {carousel_images.map((s, i) => (
             <div key={i} className="relative w-full shrink-0">
@@ -24,6 +24,6 @@ export const Main_carousel = () => {
         </CarouselLoop>
       </div>
       <div className="h-2"></div>
-    </main>
+    </section>
   );
 };

@@ -1,5 +1,5 @@
-import { Footer } from "../../footer/Footer";
-import { Navbar } from "../../navbar/Navbar";
+import { Footer } from "../../extends/footer/Footer";
+import { Navbar } from "../../extends/navbar/Navbar";
 import { useState, useRef, Children } from "react";
 import { ChevronLeft, ChevronRight } from "react-feather";
 import { useProducts } from "../../../hooks/ProductHook";
@@ -27,7 +27,6 @@ export function ProductCategoryCarousel({
 function ItemsCarousel({ category }: IProductCategoryCarouselProps) {
   const products = useProducts();
   const categoryProducts = products.filter((p) => p.category == category);
-  console.log(categoryProducts);
   return (
     <main className="overflow-hidden w-292">
       <section className="flex justify-center p-5">

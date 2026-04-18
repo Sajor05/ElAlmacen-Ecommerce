@@ -2,10 +2,7 @@ import "./style.css";
 import { useState } from "react";
 import { updateProducts } from "../../../api/api";
 import { SectionTitle } from "../../../models/SectionTitle";
-import {
-  useChildrenCategories,
-  useParentCategories,
-} from "../../../hooks/CategoriesHook";
+import { useParentCategories } from "../../../hooks/CategoriesHook";
 
 export function CreateProduct() {
   const [product, setProduct] = useState({
@@ -73,6 +70,7 @@ export function CreateProduct() {
     window.location.reload();
     //console.log("Datos a enviar:", product);
   };
+
   return (
     <main className="p-5">
       <header className="text-white text-center flex flex-col gap-3 px-30">
@@ -84,10 +82,13 @@ export function CreateProduct() {
         id="form-data"
         className="mt-10 flex flex-col gap-4"
       >
-        <ProductDetailCamp handleChange={handleChange} />
-        <OfferStateCamp handleChange={handleChange} data={product} />
-        <ProductCategoryCamp handleChange={handleChange} />
-        <DescriptionAndImagesCamp handleChange={handleChange} />
+        <ProductDetailCamp handleChange={handleChange} product={product} />
+        <OfferStateCamp handleChange={handleChange} product={product} />
+        <ProductCategoryCamp handleChange={handleChange} product={product} />
+        <DescriptionAndImagesCamp
+          handleChange={handleChange}
+          product={product}
+        />
         <button
           type="submit"
           className="w-full bg-[#3483fa] hover:bg-[#2968c8] text-white font-bold py-3 px-4 rounded-lg transition duration-300 text-lg cursor-pointer"
@@ -99,7 +100,7 @@ export function CreateProduct() {
   );
 }
 
-const ProductDetailCamp = ({ handleChange }) => {
+const ProductDetailCamp = ({ handleChange, product }) => {
   return (
     <section className="bg-white rounded-xl p-6">
       <div className="text-center p-4">
@@ -113,7 +114,7 @@ const ProductDetailCamp = ({ handleChange }) => {
           <input
             type="text"
             name="title"
-            value={FormData.title}
+            value={product.title}
             onChange={handleChange}
             placeholder="Ej: Freidora de Aire..."
             className="bg-gray-50 p-2 rounded border border-gray-300"
@@ -125,7 +126,7 @@ const ProductDetailCamp = ({ handleChange }) => {
           <input
             type="number"
             min={"0"}
-            value={FormData.price}
+            value={product.price}
             onChange={handleChange}
             name="price"
             placeholder="$..."
@@ -139,7 +140,7 @@ const ProductDetailCamp = ({ handleChange }) => {
             min={"0"}
             name="stock"
             onChange={handleChange}
-            value={FormData.stock}
+            value={product.stock}
             placeholder="Cantidad..."
             className="bg-gray-50 p-2 rounded border border-gray-300"
           />
@@ -149,7 +150,7 @@ const ProductDetailCamp = ({ handleChange }) => {
   );
 };
 
-const OfferStateCamp = ({ handleChange, data }) => {
+const OfferStateCamp = ({ handleChange, product }) => {
   return (
     <section className="flex flex-col gap-4 bg-white rounded-xl p-6">
       <div>
@@ -162,7 +163,7 @@ const OfferStateCamp = ({ handleChange, data }) => {
           <select
             name="isOffer"
             onChange={handleChange}
-            value={FormData.isOffer}
+            value={product.isOffer}
             className="bg-gray-50 p-2 rounded border border-gray-300"
           >
             <option value="">Seleccionar...</option>
@@ -170,7 +171,7 @@ const OfferStateCamp = ({ handleChange, data }) => {
             <option value="false">No</option>
           </select>
         </div>
-        {data.isOffer === "true" && (
+        {product.isOffer === "true" && (
           <div className="flex flex-col">
             <label className="text-lg font-medium">Porcentaje de oferta</label>
             <input
@@ -178,7 +179,7 @@ const OfferStateCamp = ({ handleChange, data }) => {
               name="offerPercent"
               min={"0"}
               onChange={handleChange}
-              value={FormData.offerPercent}
+              value={product.offerPercent}
               placeholder="Ej: 20% (solo numero)"
               className="bg-gray-50 p-2 rounded border border-gray-300"
             />
@@ -190,7 +191,7 @@ const OfferStateCamp = ({ handleChange, data }) => {
           <select
             name="hasQuotas"
             onChange={handleChange}
-            value={FormData.hasQuotas}
+            value={product.hasQuotas}
             className="bg-gray-50 p-2 rounded border border-gray-300"
           >
             <option value="">Seleccionar...</option>
@@ -199,13 +200,13 @@ const OfferStateCamp = ({ handleChange, data }) => {
           </select>
         </div>
 
-        {data.hasQuotas === "true" && (
+        {product.hasQuotas === "true" && (
           <div className="flex flex-col">
             <label className="text-lg font-medium">Cantidad de cuotas</label>
             <select
               name="quotasCount"
               onChange={handleChange}
-              value={FormData.quotasCount}
+              value={product.quotasCount}
               className="bg-gray-50 p-2 rounded border border-gray-300"
             >
               <option value="none">Seleccionar...</option>
@@ -221,9 +222,12 @@ const OfferStateCamp = ({ handleChange, data }) => {
   );
 };
 
-const ProductCategoryCamp = ({ handleChange }) => {
-  const childrenCategories = useChildrenCategories();
+const ProductCategoryCamp = ({ handleChange, product }) => {
   const fatherCategories = useParentCategories();
+  const fatherCategory = fatherCategories.find(
+    (f) => f.name === product.category,
+  );
+  const childrenCategories = fatherCategory?.subCategorias || [];
   return (
     <section className="flex flex-col gap-4 bg-white rounded-xl p-6">
       <div>
@@ -239,7 +243,7 @@ const ProductCategoryCamp = ({ handleChange }) => {
           <select
             name="category"
             onChange={handleChange}
-            value={FormData.category}
+            value={product.category}
             className="bg-white p-2 rounded border border-gray-300"
           >
             <option value="0">Categoria...</option>
@@ -250,18 +254,18 @@ const ProductCategoryCamp = ({ handleChange }) => {
         </div>
 
         {/* C A T E G O R I A  S E C U N D A R I A */}
-        {FormData.type != "0" && (
+        {product.category && product.category !== "0" && (
           <div className="flex flex-col">
             <label className="text-lg font-medium">Sub-Categoría</label>
             <select
               name="subCategory"
               onChange={handleChange}
-              value={FormData.subCategory}
+              value={product.subCategory}
               className="bg-white p-2 rounded border border-gray-300"
             >
               <option value="0">Sub categoria...</option>
-              {childrenCategories.map((c, i) => (
-                <option key={i}>{c.name}</option>
+              {childrenCategories.map((s, i) => (
+                <option key={i}>{s.name}</option>
               ))}
             </select>
           </div>
@@ -271,7 +275,7 @@ const ProductCategoryCamp = ({ handleChange }) => {
   );
 };
 
-const DescriptionAndImagesCamp = ({ handleChange }) => {
+const DescriptionAndImagesCamp = ({ handleChange, product }) => {
   return (
     <section className="flex flex-col gap-4 bg-white rounded-xl p-6">
       <div>
@@ -286,7 +290,7 @@ const DescriptionAndImagesCamp = ({ handleChange }) => {
           <textarea
             name="imagesArray"
             onChange={handleChange}
-            value={FormData.imagesArray}
+            value={product.imagesArray}
             rows="4"
             className="bg-gray-50 p-2 rounded border border-gray-300 font-mono text-sm"
             placeholder="https://imagen1.webp&#10;https://imagen2.webp"
@@ -299,7 +303,7 @@ const DescriptionAndImagesCamp = ({ handleChange }) => {
           <textarea
             name="details"
             onChange={handleChange}
-            value={FormData.details}
+            value={product.details}
             rows="4"
             className="bg-gray-50 p-2 rounded border border-gray-300"
             placeholder="Tamaño, potencia, peso, etc..."
@@ -310,7 +314,7 @@ const DescriptionAndImagesCamp = ({ handleChange }) => {
           <textarea
             name="description"
             onChange={handleChange}
-            value={FormData.description}
+            value={product.description}
             rows="4"
             className="bg-gray-50 p-2 rounded border border-gray-300 font-mono text-sm"
             placeholder="Descripción..."

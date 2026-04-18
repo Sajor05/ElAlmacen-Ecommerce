@@ -1,23 +1,25 @@
 import axios from "axios";
 import { createContext, useState, useContext, useEffect } from "react";
 import { registerRequest, loginRequest, verifyTokenRequest } from "../api/auth";
-import type { User, AuthContextType } from "../interface/interface";
+import type {
+  User,
+  AuthContextType,
+  AuthProviderProps,
+} from "../../../shared/interface";
 
 export const AuthContext = createContext<AuthContextType | undefined>(
   undefined,
 );
 
-export const useAuth = () => {
+export function useAuth(): AuthContextType {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error("useAuth debe usarse dentro de un AuthProvider");
   }
   return context;
-};
+}
 
-export const AuthProvider: React.FC<React.PropsWithChildren> = ({
-  children,
-}) => {
+export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
@@ -111,4 +113,4 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
       {children}
     </AuthContext.Provider>
   );
-};
+}

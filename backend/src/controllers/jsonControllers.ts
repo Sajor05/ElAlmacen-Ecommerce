@@ -20,7 +20,9 @@ export async function getCategories(req: Request, res: Response) {
 
 export async function getParentCategories(req: Request, res: Response) {
   try {
-    const parentCategories = await Categories.find({ parent: null });
+    const parentCategories = await Categories.find({ parent: null }).populate(
+      "subCategorias",
+    );
     res.status(200).json(parentCategories);
   } catch (error) {
     console.log(error);
@@ -30,7 +32,9 @@ export async function getParentCategories(req: Request, res: Response) {
 
 export async function getChildrenCategories(req: Request, res: Response) {
   try {
-    const childrenCategories = await Categories.find({ parent: { $ne: null } });
+    const childrenCategories = await Categories.find({
+      parent: { $ne: null },
+    });
     res.status(200).json(childrenCategories);
   } catch (error) {
     console.log(error);
